@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         respawnScript.updateCheckpoint(collision.gameObject.name);
+        questProgressScript.updateIslandNumber(collision.gameObject.name);
 
         //camera zoom in/out
         if(collision.gameObject.transform.parent)
@@ -142,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerCamera.SetActive(true);
                 parkourCamera.SetActive(false);
-                questProgressScript.toggleQuestUI();
+                //questProgressScript.toggleQuestUI();
             }
         }
     }

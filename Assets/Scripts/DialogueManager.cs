@@ -17,11 +17,8 @@ public class DialogueManager : MonoBehaviour
 
     //wau using hashset smart, anne very big brain
     public HashSet<string> completedQuests = new HashSet<string>();
-    //public HashSet<string> completedQuests = new HashSet<string>() { "Sapling" };
 
     public HashSet<string> killedNPCs = new HashSet<string>();
-    //public HashSet<string> savedNPCs = new HashSet<string>() { "a", "b", "c", "d", "r" };
-    //public HashSet<string> savedNPCs = new HashSet<string>() {"Robot", "Sapling"};
     public HashSet<string> savedNPCs = new HashSet<string>();
 
     // for completed interactions with environment objects
