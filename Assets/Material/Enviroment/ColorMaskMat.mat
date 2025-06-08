@@ -39,7 +39,7 @@ Material:
     - _Radius1: 0.29
     - _Radius2: 0
     - _Radius3: 0
-    - _RevealAmount: 1
+    - _RevealAmount: 0
     - _Visibility: 1
     - _WhiteStrength: 0.799
     m_Colors:

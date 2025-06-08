@@ -3,61 +3,58 @@ using System.Collections.Generic;
 public class RespawnScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] GameObject respawnsFolder;
+    //[SerializeField] GameObject respawnsFolder;
     [SerializeField] UIInputHandler uiInputHandlerScript;
-    private List<Transform> respawnPositions;
+    [SerializeField] List<GameObject> checkpointTriggers; //triggers
+    [SerializeField] List<GameObject> respawnPositions; //places to respawn to
     [SerializeField] int currentCheckPoint;
-
-    Dictionary<string, int> respawnModifierCheckpoints;
 
     private void Start()
     {
-        respawnModifierCheckpoints = new Dictionary<string, int>()
+        /*
+         * replace with version editable in unity editor
+         * add all checkpoints in order
+         * on touch - if name found in checkpoints, and index (=checkpoint #) > current checkpoint
+         *      update checkpoint
+         */
+        currentCheckPoint = 0;
+        if(checkpointTriggers.Count != respawnPositions.Count)
         {
-            {"Start", 0},
-            {"Island1", 1},
-            {"Parkour1", 2},
-            {"Island2", 3},
-            {"Parkour2", 4},
-            {"Island3", 5},
-            {"Parkour3", 6}
-        };
-
-        respawnPositions = new List<Transform>();
-        currentCheckPoint = 0; //set to 0 later
-        foreach(Transform respawn in respawnsFolder.transform)
-        {
-            respawnPositions.Add(respawn);
-            //Debug.Log(respawn.gameObject.name);
-        }
-        
-        if(respawnModifierCheckpoints.Count != respawnPositions.Count)
-        {
-            Debug.Log("RespawnScript.cs: Respawn area counts do not match with RespawnModifierCounts\n" +
-                "double check that: \n" +
-                "  1. All respawn modifiers have been added to respawnModifierCheckpoints dictionary\n" +
-                "  2. All checkpoints have been added to the RespawnPositions folder in matching order");
+            Debug.Log("# checkpoints and # triggers don't match; check [SerializeField]s for RespawnScript.cs in GlobalKillBlock");
         }
     }
 
+    //checks if the gameObject is a trigger; returns -1 if not a trigger;
+    private int findCheckpointNumber(string gameObjectName)
+    {
+        for (int i = 0; i < checkpointTriggers.Count; i += 1)
+        {
+            GameObject checkTriggerName = checkpointTriggers[i];
+            if(checkTriggerName.gameObject.name == gameObjectName)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     //note: index of respawn positions in respawnPositions corresponds to checkpoint number
     private void OnCollisionEnter(Collision collision)
     {
         GameObject player = collision.gameObject;
-        Vector3 checkpointPosition = respawnPositions[currentCheckPoint].position;
+        Vector3 checkpointPosition = respawnPositions[currentCheckPoint].transform.position;
         Vector3 respawnPosition = new Vector3(checkpointPosition.x, checkpointPosition.y, checkpointPosition.z - 0.2f);
         player.transform.position = respawnPosition;
     }
 
     public void updateCheckpoint(string gameObjectName)
     {
-        if(respawnModifierCheckpoints.ContainsKey(gameObjectName))
+        int newCheckpointNumber = findCheckpointNumber(gameObjectName);
+        if (newCheckpointNumber != -1)
         {
-            int collidedCheckpointNum = respawnModifierCheckpoints[gameObjectName];
-            if (collidedCheckpointNum > currentCheckPoint)
+            if (newCheckpointNumber > currentCheckPoint)
             {
-                currentCheckPoint = collidedCheckpointNum;
+                currentCheckPoint = newCheckpointNumber;
                 uiInputHandlerScript.ShowNewSpawnPointUI();
             }
             //Debug.Log(currentCheckPoint);
@@ -65,18 +62,6 @@ public class RespawnScript : MonoBehaviour
         else
         {
             //Debug.Log(gameObjectName + "'s checkpoint number not found in respawnModifierCheckpoints");
-        }
-    }
-
-    public void handleCameraZoom(string gameObjectName)
-    {
-        if(gameObjectName.Contains("Parkour"))
-        {
-            //zoom out follow offset to 0, 10, -10
-        }
-        else
-        {
-            //follow offset 0, 5, -5
         }
     }
 }

@@ -128,6 +128,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         respawnScript.updateCheckpoint(collision.gameObject.name);
+
+        //camera zoom in/out
         if(collision.gameObject.transform.parent)
         {
             if (collision.gameObject.transform.parent.name.Contains("Parkour"))
