@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.92894423, b: 0.17647058, a: 1}
+  m_Color: {r: 1, g: 0.9745283, b: 0.7028302, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -93,4 +93,3 @@ MonoBehaviour:
   bigTriangle2: {fileID: 21300000, guid: 84a03c4a6074a4b98a9f7710985a90a6, type: 3}
   bigTriangle3: {fileID: 21300000, guid: 9c4a7f866fd524b0fac91a5d95882572, type: 3}
   bigTriangle4: {fileID: 21300000, guid: 377c88487fd9b49c0adff8f48844215a, type: 3}
-  bigCircle: {fileID: -2413806693520163455, guid: e8e282adcceb44bd1a1f7d84450867e4, type: 3}

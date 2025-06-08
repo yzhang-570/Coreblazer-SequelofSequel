@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "TGCxCoreblazer.sln"
+    "dotnet.defaultSolution": "Coreblazer-SequelofSequel.sln"
 }

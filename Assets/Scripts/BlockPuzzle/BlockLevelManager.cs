@@ -129,9 +129,6 @@ public class BlockLevelManager : MonoBehaviour
             hintType,
             new Vector3Int(
                 id.Value.x, id.Value.y, 0
-                // -60 + id.Value.x * pixelsPerUnit + blockOffset.x,
-                // 240 - (id.Value.y * pixelsPerUnit) + blockOffset.y,
-                // 0
             ),
             this, canvas
         );
@@ -182,9 +179,9 @@ public class BlockLevelManager : MonoBehaviour
             int j = 0;
             while (i < blockLocations[key].Count && j < solution[key].Count)
             {
-                Vector3 v1 = blockLocations[key][i];
-                Vector2 v2 = solution[key][j];
-                if (v1.x != v2.x || v1.y != v2.y)
+                Vector3Int v1 = blockLocations[key][i];
+                Vector2Int v2 = solution[key][j];
+                if ((v1.x != v2.x || v1.y != v2.y) && !hasVec2(blockLocations[key], v2))
                 {
                     return new KeyValuePair<string, Vector2Int>(key, solution[key][j]);
                 }
@@ -196,6 +193,18 @@ public class BlockLevelManager : MonoBehaviour
             }
         }
         return new KeyValuePair<string, Vector2Int>(null, Vector2Int.zero);
+    }
+
+    bool hasVec2(List<Vector3Int> lst, Vector2 lookup)
+    {
+        foreach (Vector3Int v in lst)
+        {
+            if (v.x == lookup.x && v.y == lookup.y)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void spawnBlock(int id, BlockType type, int count, bool hflip, bool vflip)
