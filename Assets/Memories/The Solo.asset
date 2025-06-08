@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2327cf008e27b8f469a6eecff6a6a620, type: 3}
+  m_Name: The Solo
+  m_EditorClassIdentifier: 
+  memoryName: The Solo
+  memoryType: 2
+  memoryDesc: "Perched on a distant branch, the bird\u2019s colors shone like defiance.
+    It sang its own song \u2014 a beautiful solo."
+  memoryImage: {fileID: 21300000, guid: 05844146b15f4a2489edb593b54247a0, type: 3}

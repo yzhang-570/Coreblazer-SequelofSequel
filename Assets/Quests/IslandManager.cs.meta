@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a40840fb4ae30f64195511077d365163
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dialogueManagerScript: {instanceID: 0}
+  - StartQuestList: {fileID: 11400000, guid: 11cb6a62036048e40b169a5d7bd07239, type: 2}
+  - Island1QuestList: {fileID: 11400000, guid: 6266cddcfae4859438e5d946f2a4557a, type: 2}
+  - Island2QuestList: {fileID: 11400000, guid: 8ce1c4dcfc5cfba4c9695bc01699e8d3, type: 2}
+  - Island3QuestList: {fileID: 11400000, guid: 69b7e07c1e9fed74db239865694e11c9, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
