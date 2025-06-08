@@ -232,7 +232,6 @@ title: Storyteller
     {$npcName}: They don’t come.
     {$npcName}: Only silence.
     {$npcName}: And silence has no stories.
-        {$npcName}: I’ll remember you, my savior!
     <<remove_color 18>>
     <<start_fade "{$npcName}">>
 -> Leave
