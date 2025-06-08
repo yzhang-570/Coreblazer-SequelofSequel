@@ -68,11 +68,11 @@ public class PlayerMovement : MonoBehaviour
             weight_max14 = MemoryData.MemoryList.Count;
 
             //NEW MOVEMENT
-            //Vector3 moveDir = (transform.forward * moveY).normalized;
-            //transform.position += moveDir * (moveSpeed - weight_max14 / 2f) * Time.deltaTime;
+            Vector3 moveDir = (transform.forward * moveY).normalized;
+            transform.position += moveDir * (moveSpeed - weight_max14 / 2f) * Time.deltaTime;
 
             //OLD MOVEMENT
-            transform.position += new Vector3(moveX, 0f, moveY) * (moveSpeed - weight_max14 / 2) * Time.deltaTime;
+            //transform.position += new Vector3(moveX, 0f, moveY) * (moveSpeed - weight_max14 / 2) * Time.deltaTime;
 
             //for physics based movement: rb.AddForce(new Vector3(moveX, 0f, moveY) * 2f * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
 
@@ -94,28 +94,28 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //NEW ROTATION
-            // If there's X input, change the look direction (horizontal input only affects direction)
-            //if (Mathf.Abs(moveX) > 0.1f)
-            //{
-            //    // Rotate left/right on horizontal input
-            //    currentDirection = Quaternion.Euler(0, moveX * rotationSpeed, 0) * currentDirection;
-            //}
-            //if (currentDirection != Vector3.zero)
-            //{
-            //    Quaternion targetRotation = Quaternion.LookRotation(currentDirection);
-            //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-            //}
+            //If there's X input, change the look direction (horizontal input only affects direction)
+            if (Mathf.Abs(moveX) > 0.1f)
+            {
+                // Rotate left/right on horizontal input
+                currentDirection = Quaternion.Euler(0, moveX * rotationSpeed, 0) * currentDirection;
+            }
+            if (currentDirection != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(currentDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            }
 
             //OLD ROTATION
-            Vector3 direction = new Vector3(moveX, 0f, moveY).normalized;
-            float magnitude = new Vector3(moveX, 0f, moveY).magnitude;
-            if (magnitude > 0f)
-            {
-                Quaternion current = transform.rotation;
-                //Quaternion rotation = Quaternion.LookRotation(npcPosition.transform.position - transform.position);
-                Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-                transform.rotation = Quaternion.Slerp(current, rotation, Time.deltaTime * rotationSpeed);
-            }
+            //Vector3 direction = new Vector3(moveX, 0f, moveY).normalized;
+            //float magnitude = new Vector3(moveX, 0f, moveY).magnitude;
+            //if (magnitude > 0f)
+            //{
+            //    Quaternion current = transform.rotation;
+            //    //Quaternion rotation = Quaternion.LookRotation(npcPosition.transform.position - transform.position);
+            //    Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+            //    transform.rotation = Quaternion.Slerp(current, rotation, Time.deltaTime * rotationSpeed);
+            //}
 
 
         }

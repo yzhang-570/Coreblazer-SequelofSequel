@@ -66,6 +66,7 @@ public class IslandManager : MonoBehaviour
         {
             Vector3 currPosition = platformsParent.transform.position;
             platformsParent.transform.position = new Vector3(currPosition.x, currPosition.y - startingDistance, currPosition.z);
+            platformsParent.SetActive(false);
         }
 
         finalCutsceneCollider.SetActive(false);
@@ -108,6 +109,7 @@ public class IslandManager : MonoBehaviour
         allCamerasList[islandNumber].SetActive(true);
         playerCamera.SetActive(false);
         AudioManager.Instance.PlaySFX("rock");
+        platformParent.SetActive(true);
         foreach (Transform child in platformParent.transform)
         {
             //Debug.Log("moving " + child);
