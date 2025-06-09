@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             if (Mathf.Abs(moveX) > 0.1f)
             {
                 // Rotate left/right on horizontal input
-                currentDirection = Quaternion.Euler(0, moveX * rotationSpeed, 0) * currentDirection;
+                currentDirection = Quaternion.Euler(0, moveX * rotationSpeed * Time.deltaTime, 0) * currentDirection;
             }
             if (currentDirection != Vector3.zero)
             {
