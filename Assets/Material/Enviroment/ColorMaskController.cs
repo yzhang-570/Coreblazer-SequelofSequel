@@ -14,9 +14,11 @@ public class ColorMaskController : MonoBehaviour
     private float[] displayRadii = new float[MAX_CENTERS];
     private Coroutine[] animCoroutines = new Coroutine[MAX_CENTERS];
 
+
     private bool[] inCamera = new bool[MAX_CENTERS];
     public float maxRadius = 0.33f;
     public float animationDuration = 0.3f;
+    private Vector4[] worldCenters = new Vector4[MAX_CENTERS];
 
     void Start()
     {
@@ -36,7 +38,9 @@ public class ColorMaskController : MonoBehaviour
             if (targets[i] != null)
             {
                 Vector3 viewportPos = cam.WorldToViewportPoint(targets[i].transform.position);
-                centers[i] = new Vector4(viewportPos.x, viewportPos.y, 0, 0);
+
+                centers[i] = new Vector4(viewportPos.x, viewportPos.y);
+                worldCenters[i] = new Vector4(targets[i].transform.position.x, targets[i].transform.position.y, targets[i].transform.position.z);
                 if (viewportPos.x < -maxRadius || viewportPos.x > 2 * maxRadius || viewportPos.y < -maxRadius || viewportPos.y > 2 * maxRadius)
                 {
                     inCamera[i] = false;
@@ -58,6 +62,7 @@ public class ColorMaskController : MonoBehaviour
         }
         material.SetInt("_CenterCount", count);
         material.SetVectorArray("_Centers", centers);
+        material.SetVectorArray("_WorldCenters", worldCenters);
         material.SetFloatArray("_Radii", displayRadii);
         material.SetVector("_CameraWorldPos", cam.transform.position);
 
